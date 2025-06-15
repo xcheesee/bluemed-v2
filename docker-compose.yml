@@ -4,20 +4,19 @@ services:
       context: .
       dockerfile: ./Docker/app/Dockerfile.app
     container_name: bluemed-v2-app
+    #ports:
+    #  - 8080:80
+    networks:
+      - app-network
+  nginx:
+    build:
+      context: .
+      dockerfile: ./Docker/nginx/Dockerfile.nginx
+    container_name: bluemed-v2-nginx
     ports:
-      - 5173:5173
       - 80:80
     networks:
       - app-network
-#  nginx:
-#    build:
-#      context: .
-#      dockerfile: ./Docker/nginx/Dockerfile.nginx
-#    container_name: bluemed-v2-nginx
-#    ports:
-#      - 80:80
-#    networks:
-#      - app-network
 networks:
   app-network:
     driver: bridge
